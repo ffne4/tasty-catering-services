@@ -63,16 +63,6 @@ The rules allow public content reads, public booking/testimonial creation, and a
 - Formspree receives booking enquiries through the configured booking form endpoint.
 - Cloudinary unsigned upload settings and the Formspree form ID are browser-visible by design. Restrict upload presets and enable spam protection in their provider dashboards.
 
-## Admin Access
 
-The admin login is reached through the hidden five-tap gesture on the Tasty Catering logo in the public navigation. Firebase Authentication remains the actual security boundary; the hidden gesture is only a navigation layer.
 
-## Deployment
 
-Deploy the static files with GitHub Pages, Firebase Hosting, Netlify, or another static hosting provider. For Firebase Hosting, add a hosting configuration to `firebase.json`, then deploy with:
-
-```powershell
-firebase deploy --only hosting --project tasty-catering-3b5ce
-```
-
-Before publishing, read [SECURITY.md](SECURITY.md).
