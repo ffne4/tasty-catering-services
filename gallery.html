@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gallery — Tasty Catering Service</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<nav class="navbar">
+  <a href="index.html" class="nav-logo" data-admin-trigger>
+    <img src="assets/images/logo.png" alt="Logo">
+    <div><span data-setting="businessName">Tasty Catering Service</span><small data-setting="location">Busega</small></div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="about.html">About Us</a></li>
+    <li><a href="services.html">Services</a></li>
+    <li><a href="gallery.html" class="active">Gallery</a></li>
+    <li><a href="blog.html">Blog & Reviews</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <a href="contact.html#bookingForm" class="nav-cta">Book Now</a>
+  <div class="hamburger"><span></span><span></span><span></span></div>
+</nav>
+
+<section style="padding-top:150px;background:linear-gradient(135deg,var(--red),var(--red-dark));color:#fff;text-align:center;">
+  <div class="reveal">
+    <h1 style="font-size:clamp(2rem,5vw,3rem);">Gallery</h1>
+    <p style="opacity:.9;max-width:600px;margin:10px auto 0;">Photos & videos from the events we've catered.</p>
+  </div>
+</section>
+
+<section>
+  <div class="section-title reveal">
+    <h2>Our Work in Pictures</h2>
+    <p>Click any image or video to view it larger.</p>
+  </div>
+  <div class="gallery-grid" id="galleryFull"></div>
+</section>
+
+<section style="background:linear-gradient(135deg,var(--red),var(--red-dark));color:#fff;text-align:center;">
+  <div class="reveal">
+    <h2 style="font-size:clamp(1.6rem,4vw,2.5rem);margin-bottom:14px;">Want to Be in Our Next Album?</h2>
+    <p style="max-width:600px;margin:0 auto 30px;opacity:.95;">Let us cater your next event.</p>
+    <a href="contact.html" class="btn btn-primary">Book Now</a>
+  </div>
+</section>
+
+<div class="lightbox" id="lightbox"></div>
+
+<footer>
+  <div class="footer-grid">
+    <div><img src="assets/images/logo.png" alt="Logo" style="height:70px;margin-bottom:12px;">
+      <p style="font-size:.9rem;">Professional catering for every occasion in Busega and across Uganda.</p></div>
+    <div><h4>Quick Links</h4>
+      <a href="about.html">About Us</a><a href="services.html">Services</a>
+      <a href="gallery.html">Gallery</a><a href="blog.html">Blog</a></div>
+    <div><h4>Services</h4>
+      <a href="services.html">Weddings</a><a href="services.html">Corporate</a>
+      <a href="services.html">Burials</a><a href="services.html">Parties</a></div>
+    <div><h4>Contact</h4>
+      <a data-tel href="#">📞 <span data-setting="phone">0759614716</span></a>
+      <a data-email href="#">📧 <span data-setting="email">drakewanswa@gmail.com</span></a>
+      <a data-whatsapp href="#">💬 WhatsApp Us</a>
+      <a data-setting-href="tiktok" href="#">TikTok</a>
+      <a data-setting-href="instagram" href="#">Instagram</a></div>
+  </div>
+  <div class="footer-bottom">© <span id="year"></span> <span data-setting="businessName">Tasty Catering Service</span> — All Rights Reserved.</div>
+</footer>
+
+<a data-whatsapp href="#" class="wa-float" target="_blank" aria-label="WhatsApp">
+  <svg viewBox="0 0 24 24"><path d="M17.6 6.32A7.85 7.85 0 0 0 12.05 4a7.94 7.94 0 0 0-6.9 11.9L4 20l4.2-1.1a7.94 7.94 0 0 0 11.4-7.1 7.85 7.85 0 0 0-2-5.48zm-5.55 12.2a6.6 6.6 0 0 1-3.36-.92l-.24-.14-2.5.65.67-2.43-.16-.25A6.6 6.6 0 1 1 12.05 18.52zm3.62-4.94c-.2-.1-1.17-.58-1.35-.64s-.31-.1-.44.1-.5.64-.62.77-.23.15-.43.05a5.4 5.4 0 0 1-1.6-.99 6 6 0 0 1-1.1-1.37c-.12-.2 0-.31.09-.4l.3-.35a1.3 1.3 0 0 0 .2-.33.36.36 0 0 0 0-.35c-.05-.1-.44-1.06-.6-1.45s-.32-.33-.44-.34h-.37a.7.7 0 0 0-.51.24 2.14 2.14 0 0 0-.67 1.59 3.72 3.72 0 0 0 .78 1.97 8.5 8.5 0 0 0 3.26 2.88c.46.2.81.32 1.09.4a2.62 2.62 0 0 0 1.2.08 1.97 1.97 0 0 0 1.29-.91 1.6 1.6 0 0 0 .11-.91c-.05-.08-.18-.13-.38-.23z"/></svg>
+</a>
+
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-storage-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js"></script>
+<script src="assets/js/firebase-config.js"></script>
+<script src="assets/js/store.js"></script>
+<script src="assets/js/main.js"></script>
+<script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+</body>
+</html>

@@ -1,0 +1,21 @@
+# Local configuration and credentials
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+service-account*.json
+firebase-debug.log
+.firebaserc
+
+# Dependencies and generated files
+node_modules/
+dist/
+build/
+coverage/
+.vscode/
+
+# OS/editor files
+.DS_Store
+Thumbs.db
+*.swp

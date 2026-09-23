@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin — Tasty Catering Service</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body class="admin-body">
+
+<!-- LOGIN SCREEN -->
+<div class="admin-login" id="loginScreen" style="display:none;">
+  <div class="admin-login-box">
+    <img src="assets/images/logo.png" alt="Logo">
+    <h2>Admin Login</h2>
+    <p class="sub">Tasty Catering Service — Busega</p>
+    <form id="loginForm">
+      <input type="email" id="adminEmail" placeholder="Firebase admin email" value="admin@tastycatering.local">
+      <input type="password" id="adminPass" placeholder="Enter admin password" required>
+      <p id="loginError" style="color:#dc3545;font-size:.85rem;margin-bottom:12px;display:none;">Incorrect password. Try again.</p>
+      <button type="submit" class="btn btn-primary" style="width:100%;">Login</button>
+    </form>
+    <p style="text-align:center;margin-top:20px;font-size:.8rem;color:#aaa;">Sign in with the Firebase admin account configured for this project.</p>
+  </div>
+</div>
+
+<!-- DASHBOARD -->
+<div class="admin-layout" id="dashboard" style="display:none;">
+  <aside class="admin-sidebar">
+    <div class="brand">
+      <img src="assets/images/logo.png" alt="">
+      <b>Tasty Catering<br><small style="color:var(--gold);font-size:.7rem;">Admin Panel</small></b>
+    </div>
+    <ul class="admin-nav">
+      <li><a data-panel="dashboard" class="active" onclick="switchPanel('dashboard')">📊 Dashboard</a></li>
+      <li><a data-panel="settings" onclick="switchPanel('settings')">⚙️ Site Settings</a></li>
+      <li><a data-panel="services" onclick="switchPanel('services')">🍽️ Services & Menu</a></li>
+      <li><a data-panel="gallery" onclick="switchPanel('gallery')">🖼️ Gallery</a></li>
+      <li><a data-panel="blog" onclick="switchPanel('blog')">📝 Blog</a></li>
+      <li><a data-panel="testimonials" onclick="switchPanel('testimonials')">💬 Testimonials</a></li>
+      <li><a data-panel="bookings" onclick="switchPanel('bookings')">📥 Bookings Inbox</a></li>
+      <li><a href="index.html" target="_blank">🌐 View Site ↗</a></li>
+    </ul>
+  </aside>
+
+  <main class="admin-main">
+    <div class="admin-header">
+      <h1 id="pageTitle">Dashboard</h1>
+      <button id="logoutBtn" class="logout-btn" type="button">Logout</button>
+    </div>
+
+    <!-- DASHBOARD -->
+    <section class="admin-panel active" id="panel-dashboard">
+      <div class="admin-card">
+        <h3>Welcome back 👋</h3>
+        <p style="color:#666;">Use the sidebar to manage everything on your website. Any change you make here appears immediately on the public site.</p>
+        <ul style="margin-top:16px;color:#555;line-height:2;">
+          <li>🍽️ Add / edit <b>services & menu items</b> with prices</li>
+          <li>🖼️ Upload <b>photos and videos</b> to the gallery</li>
+          <li>📝 Publish <b>blog posts</b></li>
+          <li>💬 Add <b>testimonials</b></li>
+          <li>📥 View all <b>booking enquiries</b></li>
+          <li>⚙️ Update <b>contact info, socials, slogan</b></li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- SETTINGS -->
+    <section class="admin-panel" id="panel-settings">
+      <div class="admin-card">
+        <h3>Site Settings</h3>
+        <form id="settingsForm">
+          <label>Business Name</label><input id="set_businessName">
+          <label>Slogan</label><input id="set_slogan">
+          <label>Location</label><input id="set_location">
+          <label>Phone</label><input id="set_phone">
+          <label>WhatsApp (international, no + e.g. 256759614716)</label><input id="set_whatsapp">
+          <label>Email</label><input id="set_email">
+          <label>Physical Address</label><input id="set_address">
+          <label>TikTok URL</label><input id="set_tiktok">
+          <label>Instagram URL</label><input id="set_instagram">
+          <label>Facebook URL</label><input id="set_facebook">
+          <label>Formspree ID (for booking emails — see setup notes)</label><input id="set_formspreeId" placeholder="e.g. mzbqwxyz">
+          <label>About Text</label><textarea id="set_about" rows="4"></textarea>
+          <button type="submit" class="save-btn">Save Settings</button>
+        </form>
+      </div>
+    </section>
+
+    <!-- SERVICES -->
+    <section class="admin-panel" id="panel-services">
+      <div class="admin-card">
+        <h3>Add / Edit Service</h3>
+        <form id="serviceForm">
+          <label>Service Title</label><input name="serviceTitle" required>
+          <label>Price (e.g. "From UGX 500,000" or "Custom Quote")</label><input name="servicePrice" required>
+          <label>Description</label><textarea name="serviceDesc" rows="3" required></textarea>
+          <label>Image URL (optional if uploading a file)</label><input name="serviceImageUrl" placeholder="https://...">
+          <label>Or Upload Image</label><input type="file" name="serviceImage" accept="image/*">
+          <button type="submit" class="save-btn">Add Service</button>
+        </form>
+      </div>
+      <div class="admin-card">
+        <h3>Current Services</h3>
+        <div id="adminServicesList"></div>
+      </div>
+    </section>
+
+    <!-- GALLERY -->
+    <section class="admin-panel" id="panel-gallery">
+      <div class="admin-card">
+        <h3>Add to Gallery</h3>
+        <form id="galleryForm">
+          <label>Type</label>
+          <select name="galleryType"><option value="image">Image</option><option value="video">Video</option></select>
+          <label>Caption</label><input name="galleryCaption" placeholder="Optional">
+          <label>Media URL (optional if uploading a file)</label><input name="galleryUrl" placeholder="https://...">
+          <label>Or Upload File</label><input type="file" name="galleryFile" accept="image/*,video/*">
+          <button type="submit" class="save-btn">Add to Gallery</button>
+        </form>
+      </div>
+      <div class="admin-card">
+        <h3>Gallery Items</h3>
+        <div id="adminGalleryList"></div>
+      </div>
+    </section>
+
+    <!-- BLOG -->
+    <section class="admin-panel" id="panel-blog">
+      <div class="admin-card">
+        <h3>New Blog Post</h3>
+        <form id="blogForm">
+          <label>Title</label><input name="postTitle" required>
+          <label>Date</label><input type="date" name="postDate">
+          <label>Excerpt (short summary)</label><textarea name="postExcerpt" rows="2" required></textarea>
+          <label>Full Body</label><textarea name="postBody" rows="6"></textarea>
+          <label>Image URL</label><input name="postImageUrl" placeholder="https://...">
+          <label>Or Upload Image</label><input type="file" name="postImage" accept="image/*">
+          <button type="submit" class="save-btn">Publish Post</button>
+        </form>
+      </div>
+      <div class="admin-card">
+        <h3>Published Posts</h3>
+        <div id="adminBlogList"></div>
+      </div>
+    </section>
+
+    <!-- TESTIMONIALS -->
+    <section class="admin-panel" id="panel-testimonials">
+      <div class="admin-card">
+        <h3>Add Testimonial</h3>
+        <form id="testimonialForm">
+          <label>Client Name</label><input name="tName" required>
+          <label>Event Type</label><input name="tEvent" placeholder="Wedding, Corporate, etc." required>
+          <label>Rating (1–5)</label><input type="number" name="tRating" min="1" max="5" value="5">
+          <label>Message</label><textarea name="tMessage" rows="3" required></textarea>
+          <label>Client Photo URL (optional)</label><input name="tImageUrl" placeholder="https://...">
+          <label>Or Upload Client Photo</label><input type="file" name="tImage" accept="image/*">
+          <button type="submit" class="save-btn">Add Testimonial</button>
+        </form>
+      </div>
+      <div class="admin-card">
+        <h3>Current Testimonials</h3>
+        <div id="adminTestimonialsList"></div>
+      </div>
+    </section>
+
+    <!-- BOOKINGS -->
+    <section class="admin-panel" id="panel-bookings">
+      <div class="admin-card">
+        <h3>Booking Enquiries</h3>
+        <p style="color:#666;font-size:.9rem;margin-bottom:14px;">Every submission from the contact/booking form appears here — even if the email fails.</p>
+        <div id="adminBookingsList"></div>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-storage-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js"></script>
+<script src="assets/js/firebase-config.js"></script>
+<script src="assets/js/store.js"></script>
+<script src="assets/js/admin.js"></script>
+</body>
+</html>

@@ -1,0 +1,40 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+
+    match /site/{document} {
+      allow read: if true;
+      allow write: if isAuthenticated();
+    }
+
+    match /services/{document} {
+      allow read: if true;
+      allow write: if isAuthenticated();
+    }
+
+    match /gallery/{document} {
+      allow read: if true;
+      allow write: if isAuthenticated();
+    }
+
+    match /posts/{document} {
+      allow read: if true;
+      allow write: if isAuthenticated();
+    }
+
+    match /testimonials/{document} {
+      allow read: if true;
+      allow create: if true;
+      allow update, delete: if isAuthenticated();
+    }
+
+    match /bookings/{document} {
+      allow create: if true;
+      allow read, update, delete: if isAuthenticated();
+    }
+  }
+}
